@@ -1,20 +1,20 @@
-# Configuração do Streamlit. Descomente e ajuste conforme o projeto avançar.
+# Configuração do Streamlit — Identidade Visual (Indian Flight Delay)
 # O tema pode ser trocado pelo menu ⋮ → Settings → Choose app theme.
 
 [theme]
 paddingTop = "0.0rem"     # espaço abaixo da barra do topo (valor entre aspas)
-# font = "sans serif"     # "sans serif", "serif" ou "monospace"
+font = "sans serif"       # "sans serif", "serif" ou "monospace"
 
 [theme.light]
-primaryColor = "#c1121f"            # cor de destaque (widgets, links): mesmo vermelho dos histogramas
-backgroundColor = "#ffffff"         # fundo da página
-secondaryBackgroundColor = "#f0f2f6"  # fundo da sidebar e de widgets
-textColor = "#31333f"               # cor do texto
-borderColor = "#d5dae5"
+primaryColor = "#c84b31"              # cor de destaque operacional (sliders, abas, botões)
+backgroundColor = "#ffffff"           # fundo da página
+secondaryBackgroundColor = "#f4f1ea"  # fundo da sidebar e de widgets
+textColor = "#1e1b24"                 # cor do texto
+borderColor = "#dcd6ce"
 
 [theme.dark]
-primaryColor = "#c1121f"
+primaryColor = "#e05a47"
 backgroundColor = "#0e1117"
-secondaryBackgroundColor = "#262730"
+secondaryBackgroundColor = "#1e222d"
 textColor = "#fafafa"
-borderColor = "#41444e"
+borderColor = "#383e4c"
