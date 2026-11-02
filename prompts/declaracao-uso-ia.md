@@ -25,7 +25,7 @@
 | Ferramenta | Versão / plano | Em que parte da atividade |
 | :--- | :--- | :--- |
 | **Streamlit Skills (`streamlit skills`)** | Skill oficial do Streamlit | Padrões da biblioteca, esqueleto inicial do `app.py` (Aula 21) e cache (`@st.cache_data`). |
-| **Gemini** | Gemini 2.5 Pro | Esqueleto do `app.py`, sintaxe de gráficos no Altair (Dashboards 1 e 2) e debug do `MaxRowsError`. |
+| **Gemini** | Gemini 2.5 Pro | Esqueleto do `app.py`, sintaxe de gráficos no Altair (Dashboards 1 e 2), debug do `MaxRowsError` e revisão da documentação/deploy (Aula 23). |
 | **ChatGPT** | GPT-4o (OpenAI) | Consulta de contraste de cores para o `.streamlit/config.toml` e revisão gramatical de textos. |
 
 ## 5. Registro de usos (Opção B — bloco a bloco)
@@ -69,6 +69,16 @@
 - **O que foi aproveitado e o que foi modificado:** Aproveitei a combinação de fundo claro (`#f4f1ea`) com destaque terracota (`#c84b31`) no `config.toml` e correções pontuais de pontuação, mantendo inalteradas minhas escolhas e justificativas das métricas.
 - **Como verifiquei que estava correto:** Verifiquei a legibilidade dos componentes localmente e no link publicado no Streamlit Community Cloud.
 - **Link ou anexo:** Registrado bloco a bloco nesta seção e demarcado em `.streamlit/config.toml` (`# [IA] ChatGPT`).
+
+### Uso nº 5
+- **Data:** 02/11/2026
+- **Ferramenta:** Gemini
+- **Parte da atividade:** `README.md`, comentários `# [IA]` no código e atualização da documentação em `prompts/`
+- **Finalidade:** Revisar a ortografia e clareza do README e de textos escritos por mim, além de apoio para padronizar as marcações `# [IA]` e o checklist de deploy (Aula 23).
+- **O que foi pedido:** Pedi apoio para conferir o checklist de entrega da Aula 23, padronizar os comentários `# [IA] <ferramenta> – <finalidade>` no código conforme o novo documento da atividade e revisar a atualização do `README.md` com o link publicado no Streamlit Community Cloud.
+- **O que foi aproveitado e o que foi modificado:** Aproveitei a revisão de formatação da documentação e a padronização dos comentários `# [IA]` nos trechos correspondentes de `app.py`, `src/data_loader.py` e `.streamlit/config.toml`, mantendo a descrição fiel às etapas que realizei.
+- **Como verifiquei que estava correto:** Testei a abertura do link público em janela anônima, rodei os testes locais da aplicação e conferi os arquivos versionados no GitHub.
+- **Link ou anexo:** Registrado bloco a bloco nesta seção e refletido nos commits finais de documentação do repositório.
 
 ## 6. Trechos de código feitos com apoio de IA
 
