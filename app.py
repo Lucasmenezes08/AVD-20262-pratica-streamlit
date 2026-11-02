@@ -419,7 +419,7 @@ with tab_dash2:
             )
             resumo_congestao = (
                 df_kpis.assign(faixa_congestao=faixas)
-                .groupby(["faixa_congestao", "status_voo"], observed=False, as_index=False)
+                .groupby(["faixa_congestao", "status_voo"], observed=True, as_index=False)
                 .agg(
                     voos=("Flight_Number", "count"),
                     atraso_medio=("Departure_Delay", "mean"),
