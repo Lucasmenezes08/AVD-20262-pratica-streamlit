@@ -1,36 +1,85 @@
-# Declaração de Uso de IA
+# Declaração de Uso de Inteligência Artificial Generativa
 
-**Nome:** Lucas Menezes
-**Data:** 27/10/2026
+**Atividade Streamlit AVD – 2026.2** — Dashboards com Streamlit (Aulas 21 a 23)
 
-## Ferramenta
+> A versão oficial diagramada no layout da disciplina encontra-se em [`prompts/DECLARACAO_IA.pdf`](DECLARACAO_IA.pdf) (e [`prompts/DECLARACAO_IA.docx`](DECLARACAO_IA.docx)).
 
-Gemini / Assistente de IA no editor (com as instruções do `streamlit skills` ativadas localmente).
+## 1. Identificação
 
-## Prompt usado
+| Campo | Informação |
+| :--- | :--- |
+| **Turma** | ☑ 5A &nbsp;&nbsp; ☐ 5B |
+| **Nome Completo** | Lucas Menezes Santana |
+| **E-mail** | lms4@cesar.school |
+| **Repositório (link)** | https://github.com/Lucasmenezes08/AVD-20262-pratica-streamlit |
+| **App Publicado (Streamlit Cloud)** | https://avd-20262-pratica-app-t2e2gvybxtzoatkk68bmxv.streamlit.app |
+| **Data de entrega** | 02/11/2026 |
 
-### Aula 21 — Esqueleto do layout e filtros dinâmicos
-```text
-Tenho o rascunho do Dashboard 1 (entregas/rascunho-dashboard1.png) para o dataset Indian Flight Delay (data/clean/dataset.csv). Preciso montar o esqueleto do app.py lendo os dados de src/data_loader.py com @st.cache_data, colocando na sidebar um multiselect para as variáveis quantitativas (VARS_QUANT), um toggle para separar por status_voo ("No Horário" vs "Atrasado") e um loop que crie um st.slider de intervalo para cada variável selecionada respeitando se a coluna é int ou float.
-```
+## 3. Declaração geral
 
-### Aula 22 — Adaptação para Altair (150k linhas) e seleção cruzada no Dashboard 2
-```text
-Estou migrando os gráficos do meu dashboard para Altair seguindo o exemplo da aula, mas meu dataset tem 150.000 linhas e o Altair retorna MaxRowsError ao criar o histograma direto do DataFrame. Como posso pré-calcular os bins no pandas para passar só a tabela agregada para o alt.Chart? Aproveite e mostre como usar alt.selection_point com on_select="rerun" num gráfico de barras agrupado por Airline na segunda aba (st.tabs) para filtrar os 4 st.metric do Dashboard 2.
-```
+- [ ] **Não utilizei** nenhuma ferramenta de IA generativa em nenhuma etapa do projeto.
+- [x] **Utilizei** IA generativa, somente nas situações permitidas, e registrei todos os usos nas Seções 4 a 6 (links das conversas ou blocos de registro).
 
-## O que foi aceito, modificado ou rejeitado e por quê
+## 4. Ferramentas utilizadas
 
-- **Aceito:**
-  - A estrutura base da sidebar com geração dinâmica de `st.slider` diferenciando tipos inteiros e decimais (`pd.api.types.is_integer_dtype`) e o uso de `@st.cache_data` no `src/data_loader.py`.
-  - A estratégia de pré-agregar os intervalos (bins) do histograma e o agrupamento por companhia aérea no `pandas` antes de montar o `alt.Chart`, o que resolveu o limite de 5.000 linhas do Altair e deixou a atualização dos gráficos instantânea mesmo com 150.000 voos.
-  - O padrão de `alt.selection_point(name="selecao_cia", fields=["Airline"])` combinado com `on_select="rerun"` para permitir que o clique numa barra do Dashboard 2 filtre os cartões de `st.metric`.
+| Ferramenta | Versão / plano | Em que parte da atividade |
+| :--- | :--- | :--- |
+| **Streamlit Skills (`streamlit skills`)** | Skill oficial do Streamlit | Padrões da biblioteca, esqueleto inicial do `app.py` (Aula 21) e cache (`@st.cache_data`). |
+| **Gemini** | Gemini 2.5 Pro | Esqueleto do `app.py`, sintaxe de gráficos no Altair (Dashboards 1 e 2) e debug do `MaxRowsError`. |
+| **ChatGPT** | GPT-4o (OpenAI) | Consulta de contraste de cores para o `.streamlit/config.toml` e revisão gramatical de textos. |
 
-- **Modificado:**
-  - **Rótulos e layout do Heatmap (Dashboard 1):** os nomes originais das colunas no CSV (como `Previous_Flight_Delay_Minutes` e `Scheduled_Departure_Minute`) eram muito extensos e espremiam a matriz de correlação na coluna da esquerda. Criei manualmente um dicionário de rótulos curtos (`ROTULOS_CURTOS`) e ajustei os ângulos e tamanhos de fonte no Altair para manter a leitura limpa.
-  - **Escolha e cálculo das métricas do Dashboard 2:** ajustei as métricas para refletirem o que realmente encontramos na EDA da Aula 11 — priorizando a Taxa de Atrasos, o Atraso Médio na Partida, o Atraso do Voo Anterior (efeito cascata) e a discretização do `Origin_Congestion_Index >= 75` (congestão crítica), além de configurar `delta_color="inverse"` nos KPIs onde valores maiores indicam piora operacional.
-  - **Paleta de cores e tema (`.streamlit/config.toml`):** personalizei as cores dos gráficos (`#2d223a` e `#e9d4d0`, mantendo a mesma identidade visual usada no notebook da EDA, junto com `#c84b31` para destaque no tema do Streamlit).
+## 5. Registro de usos (Opção B — bloco a bloco)
 
-- **Rejeitado:**
-  - Rejeitei a primeira sugestão da IA de passar o `df_filtrado` bruto diretamente para o `alt.Chart(df_filtrado).mark_bar()` ou desabilitar a trava com `alt.data_transformers.disable_max_rows()`, pois serializar 150.000 linhas para o navegador deixava a página pesada e lenta a cada movimento de slider.
-  - Rejeitei a sugestão de incluir "Temperatura Média" e "Velocidade do Vento" como KPIs principais no Dashboard 2, porque na nossa EDA da Aula 11 ficou comprovado que variáveis meteorológicas isoladas têm correlação praticamente nula ($|r| \le 0{,}04$) com `Departure_Delay` neste dataset, sendo muito mais relevante destacar congestão de origem e atraso herdado da aeronave.
+### Uso nº 1
+- **Data:** 22/10/2026
+- **Ferramenta:** Gemini + Streamlit Skills (`streamlit skills`)
+- **Parte da atividade:** `app.py` (esqueleto inicial) e `src/data_loader.py`
+- **Finalidade:** Usar a Skill oficial do Streamlit e gerar o esqueleto do `app.py` a partir do rascunho de layout usando o Template de Prompt (Aula 21).
+- **O que foi pedido:** Enviei o rascunho `entregas/rascunho-dashboard1.png` junto com o template `prompts/layout-skeleton-prompt.md` pedindo a estrutura base com leitura via `@st.cache_data`, `multiselect` para variáveis quantitativas, `toggle` de classe e sliders dinâmicos.
+- **O que foi aproveitado e o que foi modificado:** Aproveitei o esqueleto de colunas, o cache e a criação automática dos sliders diferenciando `int` e `float`. Modifiquei a exibição dos nomes criando o dicionário `ROTULOS_CURTOS` para evitar truncamento na barra lateral.
+- **Como verifiquei que estava correto:** Executei `streamlit run app.py` localmente e testei cada slider e seletor conferindo a contagem de voos filtrados.
+- **Link ou anexo:** Prompt documentado em `prompts/layout-skeleton-prompt.md` e trecho marcado com `# [IA]` no código.
+
+### Uso nº 2
+- **Data:** 27/10/2026
+- **Ferramenta:** Gemini
+- **Parte da atividade:** `app.py` — Dashboard 1 (Correlação e Distribuição em Altair)
+- **Finalidade:** Apoio com a sintaxe de biblioteca de visualização (Altair) e depuração de erro (`MaxRowsError` com 150.000 linhas).
+- **O que foi pedido:** Pedi apoio para escrever a sintaxe do mapa de calor triangular no Altair e para corrigir o erro `MaxRowsError` ao plotar o histograma com as 150.000 linhas do dataset.
+- **O que foi aproveitado e o que foi modificado:** Aproveitei a ideia de pré-calcular os intervalos (`bins`) no `pandas` antes de passar ao `alt.Chart` e a sobreposição `mark_rect + mark_text`. Rejeitei desabilitar o limite de 5.000 linhas do Altair para não travar o navegador e ajustei as cores para o padrão da minha EDA (`#2d223a` e `#e9d4d0`).
+- **Como verifiquei que estava correto:** Comparei os coeficientes de Spearman e o formato do histograma no dashboard com os gráficos originais do notebook `notebooks/eda.ipynb` e testei com 0, 1 e 2+ variáveis.
+- **Link ou anexo:** Registrado bloco a bloco nesta seção e demarcado em `app.py` (`# [IA] Gemini`).
+
+### Uso nº 3
+- **Data:** 27/10/2026
+- **Ferramenta:** Gemini + Streamlit Skills (`streamlit skills`)
+- **Parte da atividade:** `app.py` — Dashboard 2 (Seleção cruzada no Altair e cartões `st.metric`)
+- **Finalidade:** Apoio com a sintaxe de visualização interativa no Altair (seleção cruzada) e dúvidas sobre parâmetros do Streamlit (`st.tabs` e `st.metric`).
+- **O que foi pedido:** Consultei como configurar `alt.selection_point` junto com `on_select="rerun"` no gráfico de barras por companhia aérea para filtrar dinamicamente os cartões de `st.metric` na segunda aba.
+- **O que foi aproveitado e o que foi modificado:** Aproveitei a leitura da seleção via `evento_cia.selection` e o uso de `delta_color="inverse"`. Modifiquei os cálculos para aplicar as 4 métricas operacionais que defini a partir da EDA, rejeitando sugestões genéricas de KPIs climáticos.
+- **Como verifiquei que estava correto:** Cliquei em cada barra de companhia aérea no app e validei os valores exibidos nos 4 KPIs contra o cálculo direto no `pandas`.
+- **Link ou anexo:** Registrado bloco a bloco nesta seção e demarcado em `app.py` (`# [IA] Gemini`).
+
+### Uso nº 4
+- **Data:** 27/10/2026
+- **Ferramenta:** ChatGPT
+- **Parte da atividade:** `.streamlit/config.toml` e `entregas/justificativa-metricas.md`
+- **Finalidade:** Apoio na criação de identidade visual (`.streamlit/config.toml`) e revisão ortográfica/gramatical de textos escritos por mim.
+- **O que foi pedido:** Consultei sugestões de cores de fundo e destaque com bom contraste para acompanhar a paleta da minha EDA no `config.toml` e pedi revisão gramatical do texto que escrevi em `entregas/justificativa-metricas.md`.
+- **O que foi aproveitado e o que foi modificado:** Aproveitei a combinação de fundo claro (`#f4f1ea`) com destaque terracota (`#c84b31`) no `config.toml` e correções pontuais de pontuação, mantendo inalteradas minhas escolhas e justificativas das métricas.
+- **Como verifiquei que estava correto:** Verifiquei a legibilidade dos componentes localmente e no link publicado no Streamlit Community Cloud.
+- **Link ou anexo:** Registrado bloco a bloco nesta seção e demarcado em `.streamlit/config.toml` (`# [IA] ChatGPT`).
+
+## 6. Trechos de código feitos com apoio de IA
+
+| Arquivo / parte | Teve apoio de IA? | Tipo de apoio |
+| :--- | :--- | :--- |
+| `app.py` (esqueleto) | ☑ Sim &nbsp; ☐ Não | Esqueleto inicial via Template de Prompt + Streamlit Skills (sidebar e colunas) |
+| Dashboard 1 (correlação + distribuição) | ☑ Sim &nbsp; ☐ Não | Sintaxe do Altair (heatmap triangular) e pré-agregação de bins para evitar `MaxRowsError` |
+| Dashboard 2 (KPIs) | ☑ Sim &nbsp; ☐ Não | Sintaxe de seleção cruzada (`alt.selection_point` + `on_select="rerun"`) e parâmetros do `st.metric` |
+| Deploy / configuração | ☑ Sim &nbsp; ☐ Não | Consulta de contraste de cores para o tema customizado em `.streamlit/config.toml` |
+| `src/data_loader.py` | ☑ Sim &nbsp; ☐ Não | Função de leitura do CSV tratado com decorador `@st.cache_data` via Streamlit Skills |
+
+## 7. Reflexão individual
+
+Utilizei as ferramentas de IA como apoio técnico para agilizar a estruturação de layout, consultar a sintaxe do Altair e depurar erros de execução. O Gemini (com o `streamlit skills` ativo) auxiliou na geração do esqueleto inicial do `app.py` a partir do rascunho da Aula 21 e na sintaxe de seleção cruzada (`on_select="rerun"`) do Dashboard 2, enquanto o ChatGPT foi consultado para validar o contraste das cores do tema (`.streamlit/config.toml`) e revisar a gramática da documentação. Durante a implementação do Dashboard 1, rejeitei a sugestão inicial da IA de desabilitar a trava de 5.000 linhas do Altair para plotar as 150.000 linhas brutas, preferindo pré-calcular os intervalos do histograma no `pandas` para garantir fluidez. No planejamento do Dashboard 2, também descartei sugestões genéricas de usar médias de temperatura e velocidade do vento como KPIs principais. Garanti que os indicadores refletissem minha própria escolha baseando-me diretamente nos resultados da minha EDA da Aula 11, onde verifiquei que variáveis meteorológicas isoladas possuem correlação quase nula ($|r| \le 0{,}04$) com o atraso de partida, enquanto a congestão na origem ($r = 0{,}60$) e o atraso do voo anterior ($r = 0{,}50$) explicam o efeito cascata real da malha. Com isso, selecionei e validei os cálculos no `pandas` antes de integrá-los ao dashboard.
