@@ -51,6 +51,7 @@ COR_PADRAO = "#c84b31"
 CORES_CLASSE = alt.Scale(domain=["No Horário", "Atrasado"], range=[COR_NO_HORARIO, COR_ATRASADO])
 
 
+# [IA] Gemini – pré-agregação de bins no pandas para contornar o limite de 5.000 linhas (MaxRowsError) do Altair
 @st.cache_data
 def calcular_histograma_agregado(dados: pd.DataFrame, coluna: str, por_classe: bool, bins: int = 24) -> pd.DataFrame:
     """Agrega os intervalos do histograma em pandas para evitar o limite de 5.000 linhas do Altair."""
@@ -71,6 +72,7 @@ def calcular_histograma_agregado(dados: pd.DataFrame, coluna: str, por_classe: b
 
 
 # Sidebar: filtros globais de variáveis quantitativas e intervalos
+# [IA] Gemini (streamlit skills) – esqueleto inicial da sidebar e geração dinâmica de sliders a partir do rascunho
 with st.sidebar:
     st.header("Filtros — Variáveis Quantitativas")
 
@@ -132,6 +134,7 @@ with tab_dash1:
         elif len(df_filtrado) < 30:
             st.warning("Poucos voos nos intervalos escolhidos para calcular a correlação.")
         else:
+            # [IA] Gemini – apoio na sintaxe do Altair para o mapa de calor do triângulo inferior (mark_rect + mark_text)
             corr = (
                 df_filtrado[variaveis]
                 .corr(method="spearman")
@@ -302,6 +305,7 @@ with tab_dash2:
             .sort_values("atraso_medio", ascending=False)
         )
 
+        # [IA] Gemini (streamlit skills) – apoio na sintaxe de seleção cruzada (alt.selection_point + on_select="rerun")
         selecao_cia = alt.selection_point(name="selecao_cia", fields=["Airline"])
 
         grafico_barras_cia = (
